@@ -1,0 +1,9 @@
+[ignore]
+
+[include]
+
+[libs]
+
+[options]
+module.name_mapper='^find-nearest-package-json$' -> '<PROJECT_ROOT>'
+module.name_mapper='^find-nearest-package-json\/\(.*\)$' -> '<PROJECT_ROOT>/\1'
