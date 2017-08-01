@@ -1,7 +1,7 @@
 {
   "name": "find-nearest-package-json",
   "version": "0.0.0",
-  "description": "An awesome package",
+  "description": "Find the nearest package.json by recursively crawling parent directories",
   "keywords": [],
   "homepage": "https://github.com/vinsonchuong/find-nearest-package-json",
   "bugs": "https://github.com/vinsonchuong/find-nearest-package-json/issues",
@@ -11,7 +11,6 @@
     "src"
   ],
   "main": "./src/index.js",
-  "bin": "./src/bin/find-nearest-package-json.js",
   "repository": "vinsonchuong/find-nearest-package-json",
   "scripts": {
     "test": "standard -v --fix && flow && ava",
@@ -32,7 +31,7 @@
     ]
   },
   "ava": {
-    "concurrency": 8,
+    "concurrency": 3,
     "babel": "inherit",
     "require": [
       "babel-register"
