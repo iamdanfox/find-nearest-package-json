@@ -6,10 +6,14 @@ type PackageJson = { [string]: string | number | boolean }
 
 export async function findNearestPackageJson(
   directoryPath: string = path.resolve()
-): Promise<PackageJson> {
+): Promise<{ path: string, data: PackageJson }> {
   try {
-    const contents = await readFile(path.join(directoryPath, 'package.json'))
-    return JSON.parse(contents)
+    const packageJsonPath = path.join(directoryPath, 'package.json')
+    const packageJsonData = JSON.parse(await readFile(packageJsonPath))
+    return {
+      path: packageJsonPath,
+      data: packageJsonData
+    }
   } catch (error) {
     return findNearestPackageJson(path.dirname(directoryPath))
   }
@@ -26,10 +30,14 @@ function readFile(filePath: string): Promise<string> {
 
 export function findNearestPackageJsonSync(
   directoryPath: string = path.resolve()
-): PackageJson {
+): { path: string, data: PackageJson } {
   try {
-    const contents = readFileSync(path.join(directoryPath, 'package.json'))
-    return JSON.parse(contents)
+    const packageJsonPath = path.join(directoryPath, 'package.json')
+    const packageJsonData = JSON.parse(readFileSync(packageJsonPath))
+    return {
+      path: packageJsonPath,
+      data: packageJsonData
+    }
   } catch (error) {
     return findNearestPackageJsonSync(path.dirname(directoryPath))
   }

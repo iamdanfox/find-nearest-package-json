@@ -20,10 +20,16 @@ import {
 async function runAsync() {
   const packageJsonNearestCwd = await findNearestPackageJson()
   const packageJsonNearestGivenDir = await findNearestPackageJson('/tmp/some-project/some-dir')
+
+  console.log(packageJsonNearestGivenDir.path)
+  console.log(packageJsonNearestGivenDir.data)
 }
 
 function runSync() {
   const packageJsonNearestCwd = findNearestPackageJsonSync()
   const packageJsonNearestGivenDir = findNearestPackageJsonSync('/tmp/some-project/some-dir')
+
+  console.log(packageJsonNearestGivenDir.path)
+  console.log(packageJsonNearestGivenDir.data)
 }
 ```
