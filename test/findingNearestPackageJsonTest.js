@@ -46,6 +46,10 @@ test('recursively finding the nearest package.json in an ancestor directory of t
   t.is(packageJson.name, 'project')
 })
 
+test('throwing an exception if a package.json cannot be found', async t => {
+  await t.throws(findNearestPackageJson(path.resolve('..')))
+})
+
 test('synchronously and recursively finding the nearest package.json in an ancestor directory of the given directory', t => {
   const {
     path: packageJsonPath,
@@ -55,4 +59,8 @@ test('synchronously and recursively finding the nearest package.json in an ances
   )
   t.is(packageJsonPath, path.resolve('test/fixtures/project/package.json'))
   t.is(packageJson.name, 'project')
+})
+
+test('synchronously throwing an exception if a package.json cannot be found', t => {
+  t.throws(() => findNearestPackageJsonSync(path.resolve('..')))
 })

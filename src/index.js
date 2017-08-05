@@ -15,7 +15,11 @@ export async function findNearestPackageJson(
       data: packageJsonData
     }
   } catch (error) {
-    return findNearestPackageJson(path.dirname(directoryPath))
+    const parentDirectoryPath = path.dirname(directoryPath)
+    if (parentDirectoryPath === directoryPath) {
+      throw new Error('No package.json files found')
+    }
+    return findNearestPackageJson(parentDirectoryPath)
   }
 }
 
@@ -39,7 +43,11 @@ export function findNearestPackageJsonSync(
       data: packageJsonData
     }
   } catch (error) {
-    return findNearestPackageJsonSync(path.dirname(directoryPath))
+    const parentDirectoryPath = path.dirname(directoryPath)
+    if (parentDirectoryPath === directoryPath) {
+      throw new Error('No package.json files found')
+    }
+    return findNearestPackageJsonSync(parentDirectoryPath)
   }
 }
 
