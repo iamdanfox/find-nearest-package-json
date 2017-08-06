@@ -2,7 +2,15 @@
 import * as fs from 'fs'
 import * as path from 'path'
 
-type PackageJson = { [string]: string | number | boolean }
+type PackageJson = {
+  name: string,
+  version?: string,
+  description?: string,
+  main?: string,
+  scripts?: { [string]: string },
+  dependencies?: { [string]: string },
+  devDependencies?: { [string]: string }
+}
 
 export async function findNearestPackageJson(
   directoryPath: string = path.resolve()
